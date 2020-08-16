@@ -4,7 +4,7 @@
       <font size="6" color="#c71585">YouTube Search list (Vue.js CLI)</font>
     </div>
     <br />
-    <SearchForm :keyword="keyword" @inputted="input" @search="search_video">
+    <SearchForm :keyword="keyword" @inputted="inputted" @search="search_video">
       検索
     </SearchForm>
     <YtList :results="results" />
@@ -52,7 +52,7 @@ export default {
           self.results = res.data.items;
         });
     },
-    input: function(event) {
+    inputted: function(event) {
       this.keyword = event.target.value;
     },
   },
