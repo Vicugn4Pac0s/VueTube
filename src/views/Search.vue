@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <font size="6" color="#c71585">YouTube Search list (Vue.js CLI)</font>
+      <HeadingA>YouTube Search list (Vue.js CLI)</HeadingA>
     </div>
     <br />
     <SearchForm :keyword="keyword" @inputted="inputted" @search="search_video">
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import HeadingA from "@/components/HeadingA.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import YtList from "@/components/YtList.vue";
 import axios from "axios";
@@ -19,6 +20,7 @@ import axios from "axios";
 export default {
   name: "Search",
   components: {
+    HeadingA,
     SearchForm,
     YtList,
   },
