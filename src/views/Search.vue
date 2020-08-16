@@ -35,7 +35,6 @@ export default {
     };
   },
   props: {
-    msg: String,
   },
   methods: {
     search_video: function() {
