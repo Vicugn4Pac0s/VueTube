@@ -4,23 +4,23 @@
       <font size="6" color="#c71585">YouTube Search list (Vue.js CLI)</font>
     </div>
     <br />
-    <Search :keyword="keyword" @input="input" @click="search_video">
+    <SearchForm :keyword="keyword" @inputted="input" @search="search_video">
       検索
-    </Search>
+    </SearchForm>
     <YtList :results="results" />
   </div>
 </template>
 
 <script>
-import Search from "@/components/Search.vue";
+import SearchForm from "@/components/SearchForm.vue";
 import YtList from "@/components/YtList.vue";
 import axios from "axios";
 
 export default {
-  name: "SearchVideo",
+  name: "Search",
   components: {
-    Search,
-    YtList
+    SearchForm,
+    YtList,
   },
   data: function() {
     return {
@@ -36,16 +36,14 @@ export default {
       },
     };
   },
-  props: {
-  },
+  props: {},
   created: function() {
     this.search_video();
   },
   methods: {
     search_video: function() {
-    this.params.q = this.keyword;
+      this.params.q = this.keyword;
       var self = this;
-      console.log(this.params.q );
       axios
         .get("https://www.googleapis.com/youtube/v3/search", {
           params: this.params,
@@ -56,11 +54,9 @@ export default {
     },
     input: function(event) {
       this.keyword = event.target.value;
-    }
+    },
   },
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
