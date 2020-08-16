@@ -28,15 +28,21 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .ytCard {
+  height: 100%;
   .ytCard_body {
-    padding: 10px 5px;
+    padding: 10px 10px 20px;
     text-align: left;
+  }
+  .ytCard_thumb {
   }
   .ytCard_ttl {
     margin-bottom: 5px;
   }
   .ytCard_desc {
     font-size: 12px;
+  }
+  &:hover {
+    background: #eee;
   }
 }
 </style>

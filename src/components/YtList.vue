@@ -1,9 +1,8 @@
 <template>
   <div class="ytList">
     <div class="ytList_inner">
-      <ul class="ytList_list l-grid l-gutter-m">
+      <ul class="ytList_list">
         <li
-          class="l-grid_item l-grid_item-4"
           v-for="movie in results"
           v-bind:key="movie.id.videoId"
         >
@@ -33,10 +32,13 @@ export default {
 .ytList {
   .ytList_inner {
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1200px;
   }
   .ytList_list {
-    li {
+    display: flex;
+    flex-wrap: wrap;
+    > li {
+      width: 25%;
     }
   }
 }
