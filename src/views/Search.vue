@@ -8,6 +8,7 @@
       <SearchForm
         :keyword="keyword"
         @inputted="inputted"
+        @enter="enter"
         @search="search_video"
       >
         検索
@@ -34,6 +35,7 @@ export default {
     return {
       results: null,
       keyword: "",
+      oldKeyword: "-1",
       order: "viewCount", // リソースを再生回数の多い順に並べます。
       params: {
         q: "", // 検索クエリを指定します。
@@ -45,12 +47,14 @@ export default {
     };
   },
   props: {},
-  created: function() {
+  mounted: function() {
     this.search_video();
   },
   methods: {
     search_video: function() {
+      if(this.oldKeyword === this.keyword) return;
       this.params.q = this.keyword;
+      this.oldKeyword = this.keyword;
       var self = this;
       axios
         .get("https://www.googleapis.com/youtube/v3/search", {
@@ -62,6 +66,10 @@ export default {
     },
     inputted: function(event) {
       this.keyword = event.target.value;
+    },
+    enter: function(event) {
+      if (event.keyCode !== 13) return;
+      this.search_video();
     },
   },
 };
