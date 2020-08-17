@@ -4,9 +4,15 @@
       <HeadingA>YouTube Search list (Vue.js CLI)</HeadingA>
     </div>
     <br />
-    <SearchForm :keyword="keyword" @inputted="inputted" @search="search_video">
-      検索
-    </SearchForm>
+    <div class="searchForm_wrap u-mb20">
+      <SearchForm
+        :keyword="keyword"
+        @inputted="inputted"
+        @search="search_video"
+      >
+        検索
+      </SearchForm>
+    </div>
     <YtList :results="results" />
   </div>
 </template>
