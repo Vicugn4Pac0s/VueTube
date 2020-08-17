@@ -1,19 +1,17 @@
 <template>
-  <a v-bind:href="'https://www.youtube.com/watch?v=' + movie.id.videoId">
-    <article class="ytCard">
-      <div class="ytCard_inner">
-        <div class="ytCard_thumb">
-          <img v-bind:src="movie.snippet.thumbnails.medium.url" />
-        </div>
-        <div class="ytCard_body">
-          <h1 class="ytCard_ttl">
-            {{ movie.snippet.title }}
-          </h1>
-          <p class="ytCard_desc">{{ movie.snippet.description }}</p>
-        </div>
+  <article class="ytCard" @click="$emit('modal', movie)">
+    <div class="ytCard_inner">
+      <div class="ytCard_thumb">
+        <img v-bind:src="movie.snippet.thumbnails.medium.url" />
       </div>
-    </article>
-  </a>
+      <div class="ytCard_body">
+        <h1 class="ytCard_ttl">
+          {{ movie.snippet.title }}
+        </h1>
+        <p class="ytCard_desc">{{ movie.snippet.description }}</p>
+      </div>
+    </div>
+  </article>
 </template>
 
 <script>

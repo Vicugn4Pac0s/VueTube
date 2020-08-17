@@ -2,27 +2,45 @@
   <div class="ytList">
     <div class="ytList_inner">
       <ul class="ytList_list">
-        <li
-          v-for="movie in results"
-          v-bind:key="movie.id.videoId"
-        >
-          <YtCard :movie="movie" />
+        <li v-for="movie in results" v-bind:key="movie.id.videoId">
+          <YtCard :movie="movie" @modal="openModal" />
         </li>
       </ul>
     </div>
   </div>
+  <YtModal v-if="active" :movie="activeMovie" @close="closeModal" />
 </template>
 
 <script>
 import YtCard from "@/components/YtCard.vue";
+import YtModal from "@/components/YtModal.vue";
 
 export default {
   name: "YtList",
   components: {
     YtCard,
+    YtModal,
+  },
+  data: function() {
+    return {
+      active: 0,
+      activeMovie: {}
+    };
   },
   props: {
     results: {},
+  },
+  methods: {
+    openModal: function(movie) {
+      //if(this.active === 1) return;
+      this.active = 1;
+      this.activeMovie = movie;
+    },
+    closeModal: function() {
+      if(this.active === 0) return;
+      this.active = 0;
+      this.activeMovie = {};
+    }
   },
 };
 </script>
