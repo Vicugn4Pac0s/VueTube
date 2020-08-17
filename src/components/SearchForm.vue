@@ -40,7 +40,7 @@ export default {
     margin-right: 0.5em;
   }
   .searchForm_input:focus {
-    border-bottom: 2px solid #da3c41;
+    border-bottom: 2px solid #41B883;
     outline: none;
   }
   .searchForm_btn {
@@ -50,8 +50,9 @@ export default {
     outline: none;
     appearance: none;
 
-    background: #f9f9f9;
-    border: 2px solid #eee;
+    background: #41B883;
+    border: 2px solid #41B883;
+    color: #fff;
     padding: 0.3em 1em;
   }
 }

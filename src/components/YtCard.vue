@@ -29,11 +29,13 @@ export default {
 <style scoped lang="scss">
 .ytCard {
   height: 100%;
+  transition: 0.25s;
   .ytCard_body {
     padding: 10px 10px 20px;
     text-align: left;
   }
   .ytCard_thumb {
+    transition: 0.25s;
   }
   .ytCard_ttl {
     margin-bottom: 5px;
@@ -42,7 +44,11 @@ export default {
     font-size: 12px;
   }
   &:hover {
-    background: #eee;
+    background: #35495e;
+    color: #fff;
+    .ytCard_thumb {
+      opacity: 0.7;
+    }
   }
 }
 </style>
