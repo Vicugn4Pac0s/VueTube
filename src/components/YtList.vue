@@ -8,7 +8,9 @@
       </ul>
     </div>
   </div>
-  <YtModal v-if="active" :movie="activeMovie" @close="closeModal" />
+  <transition name="fade">
+    <YtModal v-if="active" :active="active" :movie="activeMovie" @close="closeModal" />
+  </transition>
 </template>
 
 <script>
@@ -32,7 +34,7 @@ export default {
   },
   methods: {
     openModal: function(movie) {
-      //if(this.active === 1) return;
+      if(this.active === 1) return;
       this.active = 1;
       this.activeMovie = movie;
     },
@@ -59,5 +61,12 @@ export default {
       width: 25%;
     }
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

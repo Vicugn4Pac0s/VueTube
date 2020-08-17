@@ -10,6 +10,7 @@
           'https://www.youtube.com/embed/' + movie.id.videoId + '?autoplay=1'
         "
         frameborder="0"
+        v-if="active"
       ></iframe>
     </div>
     <div class="ytModal_layer" @click="$emit('close', $event)"></div>
@@ -21,6 +22,7 @@ export default {
   name: "YtModal",
   components: {},
   props: {
+    active: Boolean,
     movie: {},
   },
   methods: {},
@@ -43,7 +45,8 @@ export default {
     z-index: 1;
   }
   .ytModal_layer {
-    background: #000;
+    background: #41B883;
+    opacity: .9;
     position: absolute;
     top: 0;
     left: 0;
