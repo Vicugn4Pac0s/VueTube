@@ -1,0 +1,148 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "eIau-ufYuDmtEK4Sl6TgFykKu3E",
+  "nextPageToken": "CAQQAA",
+  "regionCode": "JP",
+  "pageInfo": {
+    "totalResults": 291515,
+    "resultsPerPage": 4
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "C1Y9Yp3iMeBiGTHt8O0QvCLlpmA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "OsPPuG4II6c"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-20T19:00:02Z",
+        "channelId": "UCDE_gujqIP9wEBZy0lVH_8Q",
+        "title": "広瀬すず、生産者にエール　メロンと中トロに「よっしゃー！」の笑顔も　「#元気いただきますプロジェクト」テレビCMインタビュー",
+        "description": "高画質☆エンタメニュースを毎日掲載！「MAiDiGiTV」登録はこちら↓ http://www.youtube.com/subscription_center?add_user=maidigitv 女優の広瀬すずさんが出演 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/OsPPuG4II6c/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/OsPPuG4II6c/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/OsPPuG4II6c/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "maidigitv",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-20T19:00:02Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "lTfKkBHCv5hZ4E3LqQPlA1zMcsg",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "0UNLMe_vCDw"
+      },
+      "snippet": {
+        "publishedAt": "2020-04-26T08:53:48Z",
+        "channelId": "UCN28kZiKcTlmqFYj6tmgNlg",
+        "title": "広瀬すず　広瀬アリス　姉妹インスタライブ！！",
+        "description": "これまた可愛すぎました。",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/0UNLMe_vCDw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/0UNLMe_vCDw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/0UNLMe_vCDw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "S M",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-04-26T08:53:48Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "VWCGI8oBspSci57RdN6iBzXYfOM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "I7wN-DGUdr4"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-21T02:24:47Z",
+        "channelId": "UCDHBN6c7uHLyjZcxGdChZWA",
+        "title": "広瀬すずが美味しそうに国産食材を“食べて応援”！農林水産省「#元気いただきますプロジェクト」CM",
+        "description": "国産農林水産物等販売促進緊急対策「#元気いただきますプロジェクト」。広瀬すずが国産食材を“食べて応援”するTVCMを2020年8月24日より放映開始！ 農林水産省は、 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/I7wN-DGUdr4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/I7wN-DGUdr4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/I7wN-DGUdr4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "moviecollectionjp",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-21T02:24:47Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "J-gRuVt98hj_FGPydNtfk0AW7zE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "I1_SDqxFjhM"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-29T10:39:13Z",
+        "channelId": "UCtgn2oupME7XzN8mtnB7sFQ",
+        "title": "広瀬すず可愛すぎ",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/I1_SDqxFjhM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/I1_SDqxFjhM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/I1_SDqxFjhM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "AI TO",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-03-29T10:39:13Z"
+      }
+    }
+  ]
+}
