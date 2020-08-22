@@ -1,26 +1,33 @@
 <template>
   <div class="ytModal">
     <div class="ytModal_inner">
-      <iframe
-        id="ytplayer"
-        type="text/html"
-        width="1280"
-        height="720"
-        :src="
-          'https://www.youtube.com/embed/' + movie.id.videoId + '?autoplay=1'
-        "
-        frameborder="0"
-        v-if="active"
-      ></iframe>
+      <div class="ytModal_video">
+        <iframe
+          id="ytplayer"
+          type="text/html"
+          width="1280"
+          height="720"
+          :src="
+            'https://www.youtube.com/embed/' + movie.id.videoId + '?autoplay=1'
+          "
+          frameborder="0"
+          v-if="active"
+        ></iframe>
+      </div>
+      <comment :videoId="movie.id.videoId" />      
     </div>
     <div class="ytModal_layer" @click="$emit('close', $event)"></div>
   </div>
 </template>
 
 <script>
+import Comment from "@/components/Comment.vue";
+
 export default {
   name: "YtModal",
-  components: {},
+  components: {
+    Comment
+  },
   props: {
     active: Boolean,
     movie: {},
@@ -45,8 +52,8 @@ export default {
     z-index: 1;
   }
   .ytModal_layer {
-    background: #41B883;
-    opacity: .9;
+    background: #41b883;
+    opacity: 0.9;
     position: absolute;
     top: 0;
     left: 0;
