@@ -48,7 +48,7 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            var commentData = {
+            let commentData = {
               id: doc.id,
               data: doc.data()
             }

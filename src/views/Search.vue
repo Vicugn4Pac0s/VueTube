@@ -55,7 +55,7 @@ export default {
       if(this.oldKeyword === this.keyword) return;
       this.params.q = this.keyword;
       this.oldKeyword = this.keyword;
-      var self = this;
+      let self = this;
       // axios
       //   .get("https://www.googleapis.com/youtube/v3/search", {
       //     params: this.params,
