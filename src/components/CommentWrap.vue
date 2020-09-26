@@ -1,7 +1,9 @@
 <template>
   <div class="commentWrap" :class="{ active: isActive }">
     <comment :videoId="videoId" /> 
-    <div class="commentWrap_toggle" @click="commentToggle">→</div>
+    <div class="commentWrap_toggle" @click="commentToggle">
+      <img alt="Vue logo" src="../assets/images/icon-comment.png">
+    </div>
   </div>
 </template>
 
@@ -47,9 +49,12 @@ export default {
     font-size: 14px;
     position: absolute;
     top: 0;
-    left: -30px;
-    line-height: 50px;
-    width: 30px;
+    left: -35px;
+    line-height: 60px;
+    width: 35px;
+    img {
+      width: 20px;
+    }
   }
   &.active {
     transform: translate(0, 0);
