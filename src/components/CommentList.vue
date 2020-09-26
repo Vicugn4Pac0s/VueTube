@@ -29,10 +29,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .commentList {
-  background: #fff;
+  background: #41B883;
+  border-radius: 8px;
+  color: #fff;
   .commentList_inner {
-    padding: 5px 0;
+    padding: 5px 10px;
     position: relative;
+    text-align: left;
+  }
+  .commentList_date {
+    font-size: 12px;
+    margin-bottom: 5px;
   }
   .commentList_close {
     cursor: pointer;

@@ -1,13 +1,14 @@
 <template>
   <div class="comment">
     <div class="comment_inner">
+      <div class="comment_body">
+        <ul class="comment_list">
+          <li v-for="comment in comments" :key="comment.id">
+            <CommentList :comment="comment" @close="deleteComment" />
+          </li>
+        </ul>
+      </div>
       <commentForm :comment="comment" @inputted="inputted" @send="send" />
-
-      <ul class="comment_list">
-        <li v-for="comment in comments" :key="comment.id">
-          <CommentList :comment="comment" @close="deleteComment" />
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -104,6 +105,28 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .comment {
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 280px;
+  .comment_body {
+    padding: 20px 10px;
+    height: 240px;
+    overflow-y: scroll;
+    /*スクロールバーの横幅指定*/
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    /*スクロールバーの背景色・角丸指定*/
+    &::-webkit-scrollbar-track {
+      background: #f9f9f9;
+    }
+    /*スクロールバーの色・角丸指定*/
+    &::-webkit-scrollbar-thumb {
+      background: #41B883;
+    }
+  }
   .comment_list {
     li {
       margin-bottom: 5px;
