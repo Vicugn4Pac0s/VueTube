@@ -120,6 +120,7 @@ export default {
   transform: translate(280px, 0);
   .comment_body {
     height: 420px;
+    position: relative;
     overflow-y: scroll;
     /*スクロールバーの横幅指定*/
     &::-webkit-scrollbar {
@@ -133,15 +134,29 @@ export default {
     &::-webkit-scrollbar-thumb {
       background: #41b883;
     }
+    &:after {
+      content: "Comment";
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 32px;
+      font-weight: bold;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
   }
   .comment_list {
     padding: 20px 10px;
+    position: relative;
+    z-index: 1;
     li {
       margin-bottom: 5px;
     }
   }
   .comment_toggle {
-    background: #41b883;
+    background: rgba(65, 184, 131, 0.5);
     border-radius: 5px 0 0px 5px;
     color: #fff;
     cursor: pointer;
@@ -154,6 +169,9 @@ export default {
   }
   &.active {
     transform: translate(0, 0);
+    .comment_toggle {
+      background: rgba(65, 184, 131, 1);
+    }
   }
 }
 </style>

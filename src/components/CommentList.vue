@@ -29,7 +29,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .commentList {
-  background: #41B883;
+  background: rgba(65, 184, 131, 0.8);
   border-radius: 8px;
   color: #fff;
   .commentList_inner {
