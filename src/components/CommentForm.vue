@@ -1,6 +1,6 @@
 <template>
   <div class="commentForm">
-    <textarea :value="comment" name="comment" cols="30" rows="10" @input="$emit('inputted', $event)"></textarea>
+    <textarea :value="comment" name="comment" @input="$emit('inputted', $event)"></textarea>
     <button @click="$emit('send', $event)">
       送信
     </button>
@@ -27,6 +27,7 @@ export default {
   margin-bottom: 20px;
   textarea {
     background: rgba(255, 255, 255, 0.8);
+    height: 50px;
   }
 }
 </style>

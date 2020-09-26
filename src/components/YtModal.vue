@@ -61,5 +61,8 @@ export default {
     width: 100%;
     z-index: 0;
   }
+  iframe {
+    vertical-align: middle;
+  }
 }
 </style>
