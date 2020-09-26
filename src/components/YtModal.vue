@@ -54,7 +54,7 @@ export default {
     overflow: hidden;
   }
   .ytModal_layer {
-    background: #41b883;
+    background: #000;
     opacity: 0.9;
     position: absolute;
     top: 0;
