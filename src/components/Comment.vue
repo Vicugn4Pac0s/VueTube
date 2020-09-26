@@ -9,7 +9,6 @@
         </ul>
       </div>
       <commentForm :comment="comment" @inputted="inputted" @send="send" />
-      <div class="comment_toggle" @click="commentToggle">→</div>
     </div>
   </div>
 </template>
@@ -94,9 +93,6 @@ export default {
         }
       }
     },
-    commentToggle: function() {
-      this.isActive = !this.isActive;
-    },
     inputted: function(event) {
       this.comment = event.target.value;
     },
@@ -111,13 +107,7 @@ export default {
 <style scoped lang="scss">
 .comment {
   background: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  bottom: 0;
-  right: 0;
   width: 280px;
-
-  transition: 0.5s;
-  transform: translate(280px, 0);
   .comment_body {
     height: 420px;
     position: relative;
@@ -153,24 +143,6 @@ export default {
     z-index: 1;
     li {
       margin-bottom: 5px;
-    }
-  }
-  .comment_toggle {
-    background: rgba(65, 184, 131, 0.5);
-    border-radius: 5px 0 0px 5px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    position: absolute;
-    top: 0;
-    left: -30px;
-    line-height: 50px;
-    width: 30px;
-  }
-  &.active {
-    transform: translate(0, 0);
-    .comment_toggle {
-      background: rgba(65, 184, 131, 1);
     }
   }
 }

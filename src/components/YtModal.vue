@@ -14,19 +14,19 @@
           v-if="active"
         ></iframe>
       </div>
-      <comment :videoId="movie.id.videoId" />      
+      <commentWrap :videoId="movie.id.videoId" />      
     </div>
     <div class="ytModal_layer" @click="$emit('close', $event)"></div>
   </div>
 </template>
 
 <script>
-import Comment from "@/components/Comment.vue";
+import CommentWrap from "@/components/CommentWrap.vue";
 
 export default {
   name: "YtModal",
   components: {
-    Comment
+    CommentWrap
   },
   props: {
     active: Boolean,
