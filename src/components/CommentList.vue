@@ -2,8 +2,8 @@
   <div class="commentList">
     <div class="commentList_inner">
       <p class="commentList_date">{{ date }}</p>
-      <p class="commentList_comment">{{ comment.comment }}</p>
-      <div class="commentList_close">×</div>
+      <p class="commentList_comment">{{ comment.data.comment }}</p>
+      <div class="commentList_close" @click="$emit('close', comment)">×</div>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   data: function() {},
   computed: {
     date: function() {
-      return convertDate(this.comment.createdAt.seconds);
+      return convertDate(this.comment.data.createdAt.seconds);
     },
   },
   props: {

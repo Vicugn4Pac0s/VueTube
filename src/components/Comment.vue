@@ -5,7 +5,7 @@
 
       <ul class="comment_list">
         <li v-for="comment in comments" :key="comment.id">
-          <CommentList :comment="comment" />
+          <CommentList :comment="comment" @close="deleteComment" />
         </li>
       </ul>
     </div>
@@ -48,7 +48,11 @@ export default {
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.comments.push(doc.data());
+            var commentData = {
+              id: doc.id,
+              data: doc.data()
+            }
+            this.comments.push(commentData);
           });
         })
         .catch((err) => {
@@ -75,6 +79,9 @@ export default {
         .catch((err) => {
           console.log("Error getting documents", err);
         });
+    },
+    deleteComment: function(comment) {
+      console.log(comment.id);
     },
     inputted: function(event) {
       this.comment = event.target.value;
