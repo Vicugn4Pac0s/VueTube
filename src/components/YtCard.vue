@@ -26,6 +26,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .ytCard {
+  cursor: pointer;
   height: 100%;
   transition: 0.25s;
   .ytCard_body {
@@ -42,10 +43,9 @@ export default {
     font-size: 12px;
   }
   &:hover {
-    background: #35495e;
-    color: #fff;
+    background: #f9f9f9;
     .ytCard_thumb {
-      opacity: 0.7;
+      opacity: 0.8;
     }
   }
 }
