@@ -50,6 +50,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    overflow: hidden;
   }
   .ytModal_layer {
     background: #41b883;

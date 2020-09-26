@@ -33,13 +33,15 @@ export default {
     border: none;
     vertical-align: middle;
     height: 40px;
+    padding-right: 50px;
   }
   button {
     border: none;
     border-radius: 0;
     cursor: pointer;
     line-height: 40px;
-    padding: 0 10px;
+    padding: 0;
+    width: 50px;
 
     background: #41B883;
     color: #fff;
