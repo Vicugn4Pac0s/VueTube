@@ -16,7 +16,8 @@
       </div>
       <commentWrap :videoId="movie.id.videoId" />      
     </div>
-    <div class="ytModal_layer" @click="$emit('close', $event)"></div>
+    <div class="ytModal_layer"></div>
+    <div class="ytModal_close" @click="$emit('close', $event)">×</div>
   </div>
 </template>
 
@@ -61,6 +62,19 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 0;
+  }
+  .ytModal_close {
+    color: #fff;
+    cursor: pointer;
+    font-size: 80px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    line-height: 1;
+    transition: .35s;
+    &:hover {
+      opacity: .5;
+    }
   }
   iframe {
     vertical-align: middle;
