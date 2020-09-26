@@ -20,6 +20,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 
 const db = firebase.firestore();
+const dbComment = db.collection("comment");
 
 export default {
   name: "Comment",
@@ -42,7 +43,7 @@ export default {
   methods: {
     getComment: function() {
       this.comments = [];
-      db.collection("comment")
+      dbComment
         .where("videoId", "==", this.videoId)
         .orderBy("updatedAt", "desc")
         .get()
@@ -50,8 +51,8 @@ export default {
           snapshot.forEach((doc) => {
             let commentData = {
               id: doc.id,
-              data: doc.data()
-            }
+              data: doc.data(),
+            };
             this.comments.push(commentData);
           });
         })
@@ -64,7 +65,7 @@ export default {
         alert("コメントを入力してください。");
         return false;
       }
-      db.collection("comment")
+      dbComment
         .doc()
         .set({
           videoId: this.videoId,
@@ -81,14 +82,21 @@ export default {
         });
     },
     deleteComment: function(comment) {
-      console.log(comment.id);
+      dbComment.doc(comment.id).delete();
+      for (let i = 0; i < this.comments.length; i++) {
+        let commentId = this.comments[i].id;
+        if (commentId == comment.id) {
+          this.comments.splice(i, 1);
+          break;
+        }
+      }
     },
     inputted: function(event) {
       this.comment = event.target.value;
     },
     send: function() {
       this.setComment();
-    }
+    },
   },
 };
 </script>
