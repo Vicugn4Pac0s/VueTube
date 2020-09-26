@@ -89,5 +89,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .comment {
+  .comment_list {
+    li {
+      margin-bottom: 5px;
+    }
+  }
 }
 </style>
