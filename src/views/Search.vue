@@ -3,7 +3,6 @@
     <div>
       <HeadingA>YouTube Search list (Vue.js CLI)</HeadingA>
     </div>
-    <br />
     <div class="searchForm_wrap u-mb20">
       <SearchForm
         :keyword="keyword"
