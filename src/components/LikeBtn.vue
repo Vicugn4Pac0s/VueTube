@@ -10,9 +10,6 @@
 import firebase from "firebase";
 import "firebase/firestore";
 
-const db = firebase.firestore();
-const dbLike = db.collection("like");
-
 export default {
   name: "LikeBtn",
   components: {},
@@ -21,6 +18,7 @@ export default {
   },
   data: function() {
     return {
+      db: null,
       isReady: false,
       isActive: false,
     };
@@ -34,13 +32,14 @@ export default {
     },
   },
   mounted: function() {
+    this.db = firebase.firestore();
     this.getLike();
   },
   methods: {
     getLike: function() {
       let self = this;
       self.likes = [];
-      dbLike
+      self.db.collection("like")
         .where("videoId", "==", self.videoId)
         .get()
         .then((snapshot) => {
@@ -56,7 +55,7 @@ export default {
     setLike: function() {
       let self = this;
       self.isReady = false;
-      dbLike
+      self.db.collection("like")
         .doc()
         .set({
           videoId: this.videoId,
@@ -73,12 +72,12 @@ export default {
     deleteLike: function() {
       let self = this;
       self.isReady = false;
-      dbLike
+      self.db.collection("like")
         .where("videoId", "==", self.videoId)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            dbLike.doc(doc.id).delete();
+            self.db.collection("like").doc(doc.id).delete();
             self.isActive = false;
             self.isReady = true;
           });

@@ -20,9 +20,6 @@ import CommentForm from "@/components/CommentForm.vue";
 import firebase from "firebase";
 import "firebase/firestore";
 
-const db = firebase.firestore();
-const dbComment = db.collection("comment");
-
 export default {
   name: "Comment",
   components: {
@@ -31,6 +28,7 @@ export default {
   },
   data: function() {
     return {
+      db: null,
       comments: [],
       comment: "",
       isActive: true,
@@ -40,12 +38,13 @@ export default {
     videoId: String,
   },
   mounted: function() {
+    this.db = firebase.firestore();
     this.getComment();
   },
   methods: {
     getComment: function() {
       this.comments = [];
-      dbComment
+      this.db.collection("comment")
         .where("videoId", "==", this.videoId)
         .orderBy("updatedAt", "desc")
         .get()
@@ -67,7 +66,7 @@ export default {
         alert("コメントを入力してください。");
         return false;
       }
-      dbComment
+      this.db.collection("comment")
         .doc()
         .set({
           videoId: this.videoId,
@@ -84,7 +83,7 @@ export default {
         });
     },
     deleteComment: function(comment) {
-      dbComment.doc(comment.id).delete();
+      this.db.collection("comment").doc(comment.id).delete();
       for (let i = 0; i < this.comments.length; i++) {
         let commentId = this.comments[i].id;
         if (commentId == comment.id) {
