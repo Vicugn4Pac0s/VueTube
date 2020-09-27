@@ -14,6 +14,9 @@
           v-if="active"
         ></iframe>
       </div>
+      <div class="ytModal_likeBtn">
+        <likeBtn :videoId="movie.id.videoId" />    
+      </div>
       <commentWrap :videoId="movie.id.videoId" />      
     </div>
     <div class="ytModal_layer"></div>
@@ -22,11 +25,13 @@
 </template>
 
 <script>
+import LikeBtn from "@/components/LikeBtn.vue";
 import CommentWrap from "@/components/CommentWrap.vue";
 
 export default {
   name: "YtModal",
   components: {
+    LikeBtn,
     CommentWrap
   },
   props: {
@@ -62,6 +67,11 @@ export default {
     height: 100%;
     width: 100%;
     z-index: 0;
+  }
+  .ytModal_likeBtn {
+    position: absolute;
+    bottom: 465px;
+    right: 0;
   }
   .ytModal_close {
     color: #fff;
