@@ -8,7 +8,7 @@
         <h1 class="ytCard_ttl">
           {{ movie.snippet.title }}
         </h1>
-        <p class="ytCard_desc">{{ movie.snippet.description }}</p>
+        <p class="ytCard_desc">{{ movieDescription }}</p>
       </div>
     </div>
   </article>
@@ -20,6 +20,14 @@ export default {
   props: {
     movie: {},
   },
+  computed: {
+    movieDescription: function() {
+      if (this.movie.snippet.description.length > 30) {
+        return this.movie.snippet.description.substr(0, 120) + '…';
+      }
+      return this.movie.snippet.description;
+    }
+  }
 };
 </script>
 

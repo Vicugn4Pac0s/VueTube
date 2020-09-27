@@ -14,5 +14,6 @@ export default {
 <style scoped lang="scss">
 .HeadingA {
   font-size: 24px;
+  margin-bottom: 20px;
 }
 </style>

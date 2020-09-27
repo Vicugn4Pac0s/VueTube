@@ -8,16 +8,16 @@
           width="1280"
           height="720"
           :src="
-            'https://www.youtube.com/embed/' + movie.id.videoId + '?autoplay=1'
+            'https://www.youtube.com/embed/' + movieId + '?autoplay=1'
           "
           frameborder="0"
           v-if="active"
         ></iframe>
       </div>
       <div class="ytModal_likeBtn">
-        <likeBtn :videoId="movie.id.videoId" />    
+        <likeBtn :videoId="movieId" />    
       </div>
-      <commentWrap :videoId="movie.id.videoId" />      
+      <commentWrap :videoId="movieId" />      
     </div>
     <div class="ytModal_layer"></div>
     <div class="ytModal_close" @click="$emit('close', $event)">×</div>
@@ -37,6 +37,14 @@ export default {
   props: {
     active: Boolean,
     movie: {},
+  },
+  computed: {
+    movieId: function() {
+      if(this.movie.id.videoId) {
+        return this.movie.id.videoId;
+      }
+      return this.movie.id;
+    }
   },
   methods: {},
 };
