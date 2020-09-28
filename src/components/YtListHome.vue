@@ -1,14 +1,27 @@
 <template>
   <div class="ytListHome ytListHome-like">
     <div class="ytListHome_inner">
-      <div>
-        <HeadingA>最近のお気に入り</HeadingA>
-      </div>
-      <ul class="ytListHome_list">
-        <li v-for="movie in likeMovie" v-bind:key="movie.id">
-          <YtCard :movie="movie" @modal="openModal" />
-        </li>
-      </ul>
+      <section class="ytListHome_sec">
+        <div>
+          <HeadingA>最近のお気に入り</HeadingA>
+        </div>
+        <ul class="ytListHome_list">
+          <li v-for="movie in likeMovie" v-bind:key="movie.id">
+            <YtCard :movie="movie" @modal="openModal" />
+          </li>
+        </ul>
+      </section>
+
+      <section class="ytListHome_sec">
+        <div>
+          <HeadingA>最近のコメント</HeadingA>
+        </div>
+        <ul class="ytListHome_list">
+          <li v-for="movie in commentMovie" v-bind:key="movie.id">
+            <YtCard :movie="movie" @modal="openModal" />
+          </li>
+        </ul>
+      </section>
     </div>
   </div>
   <transition name="fade">
@@ -37,17 +50,21 @@ export default {
   data: function() {
     return {
       likeMovie: [],
-      //commentMovie: [],
+      commentMovie: [],
       active: 0,
       activeMovie: {},
     };
   },
   props: {
     likeIds: [],
+    commentIds: [],
   },
   computed: {
     txtLikeIds: function() {
       return this.likeIds.join(",");
+    },
+    txtCommentIds: function() {
+      return this.commentIds.join(",");
     },
   },
   methods: {
@@ -78,6 +95,21 @@ export default {
           self.likeMovie = res.data.items;
         });
     },
+    txtCommentIds: function(val) {
+      let self = this;
+      axios
+        .get("https://www.googleapis.com/youtube/v3/videos", {
+          params: {
+            part: "snippet",
+            id: val, // タグを取得したいYouTubeのvideoId
+            maxResults: 50,
+            key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc", // APIキー
+          },
+        })
+        .then(function(res) {
+          self.commentMovie = res.data.items;
+        });
+    },
   },
 };
 </script>
@@ -85,6 +117,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .ytListHome {
+  .ytListHome_sec {
+    margin-bottom: 40px;
+  }
   .ytListHome_inner {
     margin: 0 auto;
     max-width: 1200px;

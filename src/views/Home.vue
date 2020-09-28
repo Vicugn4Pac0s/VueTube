@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ytListHome :likeIds="likeIds" />
+    <ytListHome :likeIds="likeIds" :commentIds="commentIds" />
   </div>
 </template>
 
@@ -21,11 +21,13 @@ export default {
       db: null,
       max: 4,
       likeIds: [],
+      commentIds: [],
     };
   },
   mounted: function() {
     this.db = firebase.firestore();
     this.getLikeIds();
+    this.getCommentIds();
   },
   methods: {
     getLikeIds: function() {
@@ -37,11 +39,29 @@ export default {
         .then((snapshot) => {
           let i = 0;
           snapshot.forEach((doc) => {
-            if(self.max <= i) {
+            if (self.max <= i) {
               return;
             }
             self.likeIds.push(doc.data().videoId);
             i++;
+          });
+        })
+        .catch((err) => {
+          console.log("Error getting documents", err);
+        });
+    },
+    getCommentIds: function() {
+      let self = this;
+      self.db
+        .collection("comment")
+        .orderBy("createdAt", "desc")
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            if (self.commentIds.indexOf(doc.data().videoId) >= 0 || 4 <= self.commentIds.length) {
+              return;
+            }
+            self.commentIds.push(doc.data().videoId);
           });
         })
         .catch((err) => {
