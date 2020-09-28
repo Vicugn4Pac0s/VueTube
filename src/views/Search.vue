@@ -40,7 +40,7 @@ export default {
         q: "", // 検索クエリを指定します。
         part: "snippet",
         type: "video",
-        maxResults: "4", // 最大検索数
+        maxResults: "20", // 最大検索数
         key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc",
       },
     };
@@ -55,18 +55,13 @@ export default {
       this.params.q = this.keyword;
       this.oldKeyword = this.keyword;
       let self = this;
-      // axios
-      //   .get("https://www.googleapis.com/youtube/v3/search", {
-      //     params: this.params,
-      //   })
-      //   .then(function(res) {
-      //     self.results = res.data.items;
-      //   });
-
-      //テスト用コード
-      axios.get('');
-      self.results = require("../assets/yt.json");
-      self.results = self.results.items;
+      axios
+        .get("https://www.googleapis.com/youtube/v3/search", {
+          params: this.params,
+        })
+        .then(function(res) {
+          self.results = res.data.items;
+        });
     },
     inputted: function(event) {
       this.keyword = event.target.value;
