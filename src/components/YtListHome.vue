@@ -5,34 +5,41 @@
         <div>
           <HeadingA>最近のお気に入り</HeadingA>
         </div>
-        <ul class="ytListHome_list">
-          <li v-for="movie in likeMovie" v-bind:key="movie.id">
-            <YtCard :movie="movie" @modal="openModal" />
-          </li>
-        </ul>
-        <p class="ytListHome_loader" v-if="!loadLikeIds">
-          <img src="../assets/images/loader.gif" alt="" />
-        </p>
-        <p class="ytListHome_none" v-if="loadLikeIds && txtLikeIds === ''">
-          最近のお気に入りはありません。
-        </p>
+        <div class="ytListHome_body">
+          <ul class="ytListHome_list">
+            <li v-for="movie in likeMovie" v-bind:key="movie.id">
+              <YtCard :movie="movie" @modal="openModal" />
+            </li>
+          </ul>
+          <p class="ytListHome_loader" v-if="!loadLikeIds">
+            <img src="../assets/images/loader.gif" alt="" />
+          </p>
+          <p class="ytListHome_none" v-if="loadLikeIds && txtLikeIds === ''">
+            最近のお気に入りはありません。
+          </p>
+        </div>
       </section>
 
       <section class="ytListHome_sec">
         <div>
           <HeadingA>最近のコメント</HeadingA>
         </div>
-        <ul class="ytListHome_list">
-          <li v-for="movie in commentMovie" v-bind:key="movie.id">
-            <YtCard :movie="movie" @modal="openModal" />
-          </li>
-        </ul>
-        <p class="ytListHome_loader" v-if="!loadCommentIds">
-          <img src="../assets/images/loader.gif" alt="" />
-        </p>
-        <p class="ytListHome_none" v-if="loadCommentIds && txtCommentIds === ''">
-          最近のコメントはありません。
-        </p>
+        <div class="ytListHome_body">
+          <ul class="ytListHome_list">
+            <li v-for="movie in commentMovie" v-bind:key="movie.id">
+              <YtCard :movie="movie" @modal="openModal" />
+            </li>
+          </ul>
+          <p class="ytListHome_loader" v-if="!loadCommentIds">
+            <img src="../assets/images/loader.gif" alt="" />
+          </p>
+          <p
+            class="ytListHome_none"
+            v-if="loadCommentIds && txtCommentIds === ''"
+          >
+            最近のコメントはありません。
+          </p>
+        </div>
       </section>
     </div>
   </div>
@@ -138,12 +145,22 @@ export default {
     margin: 0 auto;
     max-width: 1200px;
   }
+  .ytListHome_body {
+    min-height: 240px;
+    position: relative;
+  }
   .ytListHome_list {
     display: flex;
     flex-wrap: wrap;
     > li {
       width: 25%;
     }
+  }
+  .ytListHome_loader, .ytListHome_none {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 }
 
