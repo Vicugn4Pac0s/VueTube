@@ -51,17 +51,21 @@ export default {
   },
   methods: {
     search_video: function() {
-      if(this.oldKeyword === this.keyword) return;
+      if (this.oldKeyword === this.keyword) return;
       this.params.q = this.keyword;
       this.oldKeyword = this.keyword;
       let self = this;
-      axios
-        .get("https://www.googleapis.com/youtube/v3/search", {
-          params: this.params,
-        })
-        .then(function(res) {
-          self.results = res.data.items;
-        });
+      // axios
+      //   .get("https://www.googleapis.com/youtube/v3/search", {
+      //     params: this.params,
+      //   })
+      //   .then(function(res) {
+      //     self.results = res.data.items;
+      //   });
+      //テスト用コード
+      axios.get("");
+      self.results = require("../assets/yt.json");
+      self.results = self.results.items;
     },
     inputted: function(event) {
       this.keyword = event.target.value;
