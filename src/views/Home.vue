@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ytListHome :likeIds="likeIds" :commentIds="commentIds" />
+    <ytListHome :likeIds="likeIds" :commentIds="commentIds" :loadLikeIds="loadLikeIds" :loadCommentIds="loadCommentIds" />
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
       max: 4,
       likeIds: [],
       commentIds: [],
+      loadLikeIds: 0,
+      loadCommentIds: 0,
     };
   },
   mounted: function() {
@@ -45,6 +47,7 @@ export default {
             self.likeIds.push(doc.data().videoId);
             i++;
           });
+          self.loadLikeIds = 1;
         })
         .catch((err) => {
           console.log("Error getting documents", err);
@@ -63,6 +66,7 @@ export default {
             }
             self.commentIds.push(doc.data().videoId);
           });
+          self.loadCommentIds = 1;
         })
         .catch((err) => {
           console.log("Error getting documents", err);

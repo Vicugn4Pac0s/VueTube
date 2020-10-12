@@ -10,6 +10,12 @@
             <YtCard :movie="movie" @modal="openModal" />
           </li>
         </ul>
+        <p class="ytListHome_loader" v-if="!loadLikeIds">
+          <img src="../assets/images/loader.gif" alt="" />
+        </p>
+        <p class="ytListHome_none" v-if="loadLikeIds && txtLikeIds === ''">
+          最近のお気に入りはありません。
+        </p>
       </section>
 
       <section class="ytListHome_sec">
@@ -21,6 +27,12 @@
             <YtCard :movie="movie" @modal="openModal" />
           </li>
         </ul>
+        <p class="ytListHome_loader" v-if="!loadCommentIds">
+          <img src="../assets/images/loader.gif" alt="" />
+        </p>
+        <p class="ytListHome_none" v-if="loadCommentIds && txtCommentIds === ''">
+          最近のコメントはありません。
+        </p>
       </section>
     </div>
   </div>
@@ -58,6 +70,8 @@ export default {
   props: {
     likeIds: [],
     commentIds: [],
+    loadLikeIds: Boolean,
+    loadCommentIds: Boolean,
   },
   computed: {
     txtLikeIds: function() {
