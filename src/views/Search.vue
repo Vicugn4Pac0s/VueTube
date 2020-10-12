@@ -65,10 +65,6 @@ export default {
           self.results = res.data.items;
           self.loadYoutube = 1;
         });
-      //テスト用コード
-      // axios.get("");
-      // self.results = require("../assets/yt.json");
-      // self.results = self.results.items;
     },
     inputted: function(event) {
       this.keyword = event.target.value;
