@@ -6,6 +6,9 @@
           <YtCard :movie="movie" @modal="openModal" />
         </li>
       </ul>
+      <p v-if="!loadYoutube">
+        <img src="../assets/images/loader.gif" alt="">
+      </p>
     </div>
   </div>
   <transition name="fade">
@@ -31,6 +34,7 @@ export default {
   },
   props: {
     results: {},
+    loadYoutube: Boolean,
   },
   methods: {
     openModal: function(movie) {

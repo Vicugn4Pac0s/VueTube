@@ -13,7 +13,7 @@
         検索
       </SearchForm>
     </div>
-    <YtList :results="results" />
+    <YtList :results="results" :loadYoutube="loadYoutube" />
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
         maxResults: "20", // 最大検索数
         key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc",
       },
+      loadYoutube: 0,
     };
   },
   props: {},
@@ -54,18 +55,20 @@ export default {
       if (this.oldKeyword === this.keyword) return;
       this.params.q = this.keyword;
       this.oldKeyword = this.keyword;
+      this.loadYoutube = 0;
       let self = this;
-      // axios
-      //   .get("https://www.googleapis.com/youtube/v3/search", {
-      //     params: this.params,
-      //   })
-      //   .then(function(res) {
-      //     self.results = res.data.items;
-      //   });
+      axios
+        .get("https://www.googleapis.com/youtube/v3/search", {
+          params: this.params,
+        })
+        .then(function(res) {
+          self.results = res.data.items;
+          self.loadYoutube = 1;
+        });
       //テスト用コード
-      axios.get("");
-      self.results = require("../assets/yt.json");
-      self.results = self.results.items;
+      // axios.get("");
+      // self.results = require("../assets/yt.json");
+      // self.results = self.results.items;
     },
     inputted: function(event) {
       this.keyword = event.target.value;
