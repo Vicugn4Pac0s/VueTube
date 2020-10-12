@@ -8,7 +8,12 @@
           </li>
         </ul>
       </div>
-      <commentForm :comment="comment" @inputted="inputted" @send="send" />
+      <commentForm
+        :comment="comment"
+        @inputted="inputted"
+        @send="send"
+        @enter="send"
+      />
     </div>
   </div>
 </template>
@@ -44,7 +49,8 @@ export default {
   methods: {
     getComment: function() {
       this.comments = [];
-      this.db.collection("comment")
+      this.db
+        .collection("comment")
         .where("videoId", "==", this.videoId)
         .orderBy("updatedAt", "desc")
         .get()
@@ -66,7 +72,8 @@ export default {
         alert("コメントを入力してください。");
         return false;
       }
-      this.db.collection("comment")
+      this.db
+        .collection("comment")
         .doc()
         .set({
           videoId: this.videoId,
@@ -83,7 +90,10 @@ export default {
         });
     },
     deleteComment: function(comment) {
-      this.db.collection("comment").doc(comment.id).delete();
+      this.db
+        .collection("comment")
+        .doc(comment.id)
+        .delete();
       for (let i = 0; i < this.comments.length; i++) {
         let commentId = this.comments[i].id;
         if (commentId == comment.id) {
@@ -97,7 +107,7 @@ export default {
     },
     send: function() {
       this.setComment();
-    },
+    }
   },
 };
 </script>
