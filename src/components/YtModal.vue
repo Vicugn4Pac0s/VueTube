@@ -1,6 +1,6 @@
 <template>
   <div class="ytModal">
-    <div class="ytModal_inner">
+    <div class="ytModal_inner" v-if="active">
       <div class="ytModal_video">
         <iframe
           id="ytplayer"
@@ -10,8 +10,7 @@
           :src="
             'https://www.youtube.com/embed/' + movieId + '?autoplay=1'
           "
-          frameborder="0"
-          v-if="active"
+          frameborder="0"          
         ></iframe>
       </div>
       <div class="ytModal_likeBtn">
