@@ -3,7 +3,7 @@
     <textarea
       :value="comment"
       name="comment"
-      @input="$emit('inputted', $event)"
+      @keyup="$emit('inputted', $event)"
       @keydown.enter.alt.exact="$emit('enter', $event)"
     ></textarea>
     <button @click="$emit('send', $event)">
