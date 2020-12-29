@@ -10,6 +10,12 @@ class Like {
             .where("videoId", "==", videoId)
             .get()
     }
+    getAll() {
+        return firestore
+            .collection(this.collection)
+            .orderBy("createdAt", "desc")
+            .get()        
+    }
     set(videoId) {
         return firestore
             .collection(this.collection)

@@ -7,7 +7,9 @@
 <script>
 // @ is an alias to /src
 import YtListHome from "@/components/YtListHome.vue";
-import firestore from '@/firebase/firestore';
+
+import commentModel from '@/model/comment';
+import likeModel from '@/model/like';
 
 export default {
   name: "Home",
@@ -30,10 +32,7 @@ export default {
   methods: {
     getLikeIds: function() {
       let self = this;
-      firestore
-        .collection("like")
-        .orderBy("createdAt", "desc")
-        .get()
+      likeModel.getAll()
         .then((snapshot) => {
           let i = 0;
           snapshot.forEach((doc) => {
@@ -51,10 +50,7 @@ export default {
     },
     getCommentIds: function() {
       let self = this;
-      firestore
-        .collection("comment")
-        .orderBy("createdAt", "desc")
-        .get()
+      commentModel.getAll()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             if (self.commentIds.indexOf(doc.data().videoId) >= 0 || 4 <= self.commentIds.length) {

@@ -11,6 +11,12 @@ class Comment {
             .orderBy("updatedAt", "desc")
             .get()
     }
+    getAll() {
+        return firestore
+            .collection(this.collection)
+            .orderBy("createdAt", "desc")
+            .get()        
+    }
     set(videoId, comment) {
         return firestore
             .collection(this.collection)
