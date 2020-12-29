@@ -7,8 +7,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import "firebase/firestore";
+import firestore from '@/firebase/firestore';
 
 export default {
   name: "LikeBtn",
@@ -18,7 +17,6 @@ export default {
   },
   data: function() {
     return {
-      db: null,
       isReady: false,
       isActive: false,
     };
@@ -32,14 +30,13 @@ export default {
     },
   },
   mounted: function() {
-    this.db = firebase.firestore();
     this.getLike();
   },
   methods: {
     getLike: function() {
       let self = this;
       self.likes = [];
-      self.db.collection("like")
+      firestore.collection("like")
         .where("videoId", "==", self.videoId)
         .get()
         .then((snapshot) => {
@@ -55,7 +52,7 @@ export default {
     setLike: function() {
       let self = this;
       self.isReady = false;
-      self.db.collection("like")
+      firestore.collection("like")
         .doc()
         .set({
           videoId: this.videoId,
@@ -72,12 +69,12 @@ export default {
     deleteLike: function() {
       let self = this;
       self.isReady = false;
-      self.db.collection("like")
+      firestore.collection("like")
         .where("videoId", "==", self.videoId)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            self.db.collection("like").doc(doc.id).delete();
+            firestore.collection("like").doc(doc.id).delete();
             self.isActive = false;
             self.isReady = true;
           });

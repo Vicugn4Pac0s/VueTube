@@ -22,8 +22,7 @@
 import CommentList from "@/components/CommentList.vue";
 import CommentForm from "@/components/CommentForm.vue";
 
-import firebase from "firebase";
-import "firebase/firestore";
+import firestore from '@/firebase/firestore';
 
 export default {
   name: "Comment",
@@ -33,7 +32,6 @@ export default {
   },
   data: function() {
     return {
-      db: null,
       comments: [],
       comment: "",
       isActive: true,
@@ -43,13 +41,12 @@ export default {
     videoId: String,
   },
   mounted: function() {
-    this.db = firebase.firestore();
     this.getComment();
   },
   methods: {
     getComment: function() {
       this.comments = [];
-      this.db
+      firestore
         .collection("comment")
         .where("videoId", "==", this.videoId)
         .orderBy("updatedAt", "desc")
@@ -72,7 +69,7 @@ export default {
         alert("コメントを入力してください。");
         return false;
       }
-      this.db
+      firestore
         .collection("comment")
         .doc()
         .set({
@@ -90,7 +87,7 @@ export default {
         });
     },
     deleteComment: function(comment) {
-      this.db
+      firestore
         .collection("comment")
         .doc(comment.id)
         .delete();

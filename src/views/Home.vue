@@ -7,9 +7,7 @@
 <script>
 // @ is an alias to /src
 import YtListHome from "@/components/YtListHome.vue";
-
-import * as firebase from "firebase/app";
-import "firebase/firestore";
+import firestore from '@/firebase/firestore';
 
 export default {
   name: "Home",
@@ -18,7 +16,6 @@ export default {
   },
   data: function() {
     return {
-      db: null,
       max: 4,
       likeIds: [],
       commentIds: [],
@@ -27,14 +24,13 @@ export default {
     };
   },
   mounted: function() {
-    this.db = firebase.firestore();
     this.getLikeIds();
     this.getCommentIds();
   },
   methods: {
     getLikeIds: function() {
       let self = this;
-      self.db
+      firestore
         .collection("like")
         .orderBy("createdAt", "desc")
         .get()
@@ -55,7 +51,7 @@ export default {
     },
     getCommentIds: function() {
       let self = this;
-      self.db
+      firestore
         .collection("comment")
         .orderBy("createdAt", "desc")
         .get()
