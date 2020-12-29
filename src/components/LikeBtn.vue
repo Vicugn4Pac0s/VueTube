@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import firestore from '@/firebase/firestore';
+import likeModel from '@/model/like';
 
 export default {
   name: "LikeBtn",
@@ -36,9 +36,7 @@ export default {
     getLike: function() {
       let self = this;
       self.likes = [];
-      firestore.collection("like")
-        .where("videoId", "==", self.videoId)
-        .get()
+      likeModel.get(self.videoId)
         .then((snapshot) => {
           if (snapshot.docs.length) {
             self.isActive = true;
@@ -52,12 +50,7 @@ export default {
     setLike: function() {
       let self = this;
       self.isReady = false;
-      firestore.collection("like")
-        .doc()
-        .set({
-          videoId: this.videoId,
-          createdAt: new Date(),
-        })
+      likeModel.set(self.videoId)
         .then(() => {
           self.isActive = true;
           self.isReady = true;
@@ -69,12 +62,10 @@ export default {
     deleteLike: function() {
       let self = this;
       self.isReady = false;
-      firestore.collection("like")
-        .where("videoId", "==", self.videoId)
-        .get()
+      likeModel.get(self.videoId)
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            firestore.collection("like").doc(doc.id).delete();
+            likeModel.delete(doc.id);
             self.isActive = false;
             self.isReady = true;
           });

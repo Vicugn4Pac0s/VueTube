@@ -1,33 +1,30 @@
 import firestore from '@/firebase/firestore';
 
-class Comment {
+class Like {
     constructor() {
-        this.collection = "comment";
+        this.collection = "like";
     }
     get(videoId) {
         return firestore
             .collection(this.collection)
             .where("videoId", "==", videoId)
-            .orderBy("updatedAt", "desc")
             .get()
     }
-    set(videoId, comment) {
+    set(videoId) {
         return firestore
             .collection(this.collection)
             .doc()
             .set({
                 videoId: videoId,
-                comment: comment,
                 createdAt: new Date(),
-                updatedAt: new Date(),
             })
     }
-    delete(commentId) {
+    delete(likeId) {
         return firestore
             .collection(this.collection)
-            .doc(commentId)
+            .doc(likeId)
             .delete();
     }
 }
 
-export default new Comment();
+export default new Like();
