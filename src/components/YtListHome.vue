@@ -57,7 +57,7 @@
 import HeadingA from "@/components/HeadingA.vue";
 import YtCard from "@/components/YtCard.vue";
 import YtModal from "@/components/YtModal.vue";
-import axios from "axios";
+import Youtube from "@/utilities/youtube";
 
 export default {
   name: "YtListHome",
@@ -101,35 +101,13 @@ export default {
     },
   },
   watch: {
-    txtLikeIds: function(val) {
-      let self = this;
-      axios
-        .get("https://www.googleapis.com/youtube/v3/videos", {
-          params: {
-            part: "snippet",
-            id: val, // タグを取得したいYouTubeのvideoId
-            maxResults: 50,
-            key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc", // APIキー
-          },
-        })
-        .then(function(res) {
-          self.likeMovie = res.data.items;
-        });
+    txtLikeIds: async function(val) {
+      let res = await Youtube.get(val)
+      this.likeMovie = res.data.items;
     },
-    txtCommentIds: function(val) {
-      let self = this;
-      axios
-        .get("https://www.googleapis.com/youtube/v3/videos", {
-          params: {
-            part: "snippet",
-            id: val, // タグを取得したいYouTubeのvideoId
-            maxResults: 50,
-            key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc", // APIキー
-          },
-        })
-        .then(function(res) {
-          self.commentMovie = res.data.items;
-        });
+    txtCommentIds: async function(val) {
+      let res = await Youtube.get(val)
+      this.commentMovie = res.data.items;
     },
   },
 };

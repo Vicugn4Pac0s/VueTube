@@ -21,7 +21,7 @@
 import HeadingA from "@/components/HeadingA.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import YtList from "@/components/YtList.vue";
-import axios from "axios";
+import Youtube from "@/utilities/youtube";
 
 export default {
   name: "Search",
@@ -35,14 +35,6 @@ export default {
       results: null,
       keyword: "",
       oldKeyword: "-1",
-      order: "viewCount", // リソースを再生回数の多い順に並べます。
-      params: {
-        q: "", // 検索クエリを指定します。
-        part: "snippet",
-        type: "video",
-        maxResults: "20", // 最大検索数
-        key: "AIzaSyCsi0BGE6nKk0a14F5xZTkVqrGebmJ58Pc",
-      },
       loadYoutube: 0,
     };
   },
@@ -51,20 +43,15 @@ export default {
     this.search_video();
   },
   methods: {
-    search_video: function() {
+    search_video: async function() {
       if (this.oldKeyword === this.keyword) return;
-      this.params.q = this.keyword;
       this.oldKeyword = this.keyword;
       this.loadYoutube = 0;
-      let self = this;
-      axios
-        .get("https://www.googleapis.com/youtube/v3/search", {
-          params: this.params,
-        })
-        .then(function(res) {
-          self.results = res.data.items;
-          self.loadYoutube = 1;
-        });
+
+      let res = await Youtube.search(this.keyword)
+
+      this.results = res.data.items;
+      this.loadYoutube = 1;
     },
     inputted: function(event) {
       this.keyword = event.target.value;
