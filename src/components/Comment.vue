@@ -44,38 +44,29 @@ export default {
     this.getComment();
   },
   methods: {
-    getComment: function() {
+    getComment: async function() {
       this.comments = [];
-      commentModel.get(this.videoId)
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            let commentData = {
-              id: doc.id,
-              data: doc.data(),
-            };
-            this.comments.push(commentData);
-          });
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      let data = await commentModel.get(this.videoId)
+      data.forEach((doc) => {
+        let commentData = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        this.comments.push(commentData);
+      });
     },
-    setComment: function() {
+    setComment: async function() {
       if (this.comment === "") {
         alert("コメントを入力してください。");
         return false;
       }
-      commentModel.set(this.videoId, this.comment)
-        .then(() => {
-          this.comment = "";
-          this.getComment();
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      await commentModel.set(this.videoId, this.comment);
+
+      this.comment = "";
+      this.getComment();
     },
-    deleteComment: function(comment) {
-      commentModel.delete(comment.id);
+    deleteComment: async function(comment) {
+      await commentModel.delete(comment.id);
       for (let i = 0; i < this.comments.length; i++) {
         let commentId = this.comments[i].id;
         if (commentId == comment.id) {

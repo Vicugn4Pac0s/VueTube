@@ -11,6 +11,9 @@ class Like extends Model {
             .collection(this.collection)
             .where("videoId", "==", videoId)
             .get()
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });
     }
     set(videoId) {
         return firestore
@@ -20,6 +23,9 @@ class Like extends Model {
                 videoId: videoId,
                 createdAt: new Date(),
             })
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });
     }
 
 }

@@ -33,43 +33,33 @@ export default {
     this.getLike();
   },
   methods: {
-    getLike: function() {
+    getLike: async function() {
       let self = this;
       self.likes = [];
-      likeModel.get(self.videoId)
-        .then((snapshot) => {
-          if (snapshot.docs.length) {
-            self.isActive = true;
-          }
-          self.isReady = true;
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      let data = await likeModel.get(self.videoId);
+      if (data.docs.length) {
+        self.isActive = true;
+      }
+      self.isReady = true;
     },
-    setLike: function() {
+    setLike: async function() {
       let self = this;
       self.isReady = false;
-      likeModel.set(self.videoId)
-        .then(() => {
-          self.isActive = true;
-          self.isReady = true;
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      await likeModel.set(self.videoId);
+
+      self.isActive = true;
+      self.isReady = true;
     },
-    deleteLike: function() {
+    deleteLike: async function() {
       let self = this;
       self.isReady = false;
-      likeModel.get(self.videoId)
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            likeModel.delete(doc.id);
-            self.isActive = false;
-            self.isReady = true;
-          });
-        });
+      let data = await likeModel.get(self.videoId)
+
+      data.forEach((doc) => {
+        likeModel.delete(doc.id);
+        self.isActive = false;
+        self.isReady = true;
+      });
     },
     toggleLike: function() {
       if (!this.isReady) {

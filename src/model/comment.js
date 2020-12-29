@@ -12,6 +12,9 @@ class Comment extends Model {
             .where("videoId", "==", videoId)
             .orderBy("updatedAt", "desc")
             .get()
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });
     }
     set(videoId, comment) {
         return firestore
@@ -23,6 +26,9 @@ class Comment extends Model {
                 createdAt: new Date(),
                 updatedAt: new Date(),
             })
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });
     }
 }
 

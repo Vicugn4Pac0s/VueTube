@@ -9,13 +9,19 @@ export default class Model {
         return firestore
             .collection(this.collection)
             .orderBy("createdAt", "desc")
-            .get()        
+            .get()
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });        
     }
     set() {}
     delete(id) {
         return firestore
             .collection(this.collection)
             .doc(id)
-            .delete();
+            .delete()
+            .catch((err) => {
+                console.log("Error getting documents", err);
+            });
     }
 }

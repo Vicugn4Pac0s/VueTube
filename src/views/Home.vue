@@ -30,39 +30,25 @@ export default {
     this.getCommentIds();
   },
   methods: {
-    getLikeIds: function() {
+    getLikeIds: async function() {
       let self = this;
-      likeModel.getAll()
-        .then((snapshot) => {
-          let i = 0;
-          snapshot.forEach((doc) => {
-            if (self.max <= i) {
-              return;
-            }
-            self.likeIds.push(doc.data().videoId);
-            i++;
-          });
-          self.loadLikeIds = 1;
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      let i = 0;
+      let data = await likeModel.getAll()
+      data.forEach((doc) => {
+        if (i >= self.max) return;
+        self.likeIds.push(doc.data().videoId);
+        i++;
+      });
+      self.loadLikeIds = 1;
     },
-    getCommentIds: function() {
+    getCommentIds: async function() {
       let self = this;
-      commentModel.getAll()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            if (self.commentIds.indexOf(doc.data().videoId) >= 0 || 4 <= self.commentIds.length) {
-              return;
-            }
-            self.commentIds.push(doc.data().videoId);
-          });
-          self.loadCommentIds = 1;
-        })
-        .catch((err) => {
-          console.log("Error getting documents", err);
-        });
+      let data = await commentModel.getAll()
+      data.forEach((doc) => {
+        if (self.commentIds.indexOf(doc.data().videoId) >= 0 || 4 <= self.commentIds.length) return;
+        self.commentIds.push(doc.data().videoId);
+      });
+      self.loadCommentIds = 1;
     },
   },
 };
