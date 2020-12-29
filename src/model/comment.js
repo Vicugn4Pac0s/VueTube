@@ -1,7 +1,9 @@
 import firestore from '@/firebase/firestore';
+import Model from '@/model/model';
 
-class Comment {
+class Comment extends Model {
     constructor() {
+        super();
         this.collection = "comment";
     }
     get(videoId) {
@@ -10,12 +12,6 @@ class Comment {
             .where("videoId", "==", videoId)
             .orderBy("updatedAt", "desc")
             .get()
-    }
-    getAll() {
-        return firestore
-            .collection(this.collection)
-            .orderBy("createdAt", "desc")
-            .get()        
     }
     set(videoId, comment) {
         return firestore
@@ -27,12 +23,6 @@ class Comment {
                 createdAt: new Date(),
                 updatedAt: new Date(),
             })
-    }
-    delete(commentId) {
-        return firestore
-            .collection(this.collection)
-            .doc(commentId)
-            .delete();
     }
 }
 

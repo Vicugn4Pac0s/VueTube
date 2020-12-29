@@ -1,7 +1,9 @@
 import firestore from '@/firebase/firestore';
+import Model from '@/model/model';
 
-class Like {
+class Like extends Model {
     constructor() {
+        super();
         this.collection = "like";
     }
     get(videoId) {
@@ -9,12 +11,6 @@ class Like {
             .collection(this.collection)
             .where("videoId", "==", videoId)
             .get()
-    }
-    getAll() {
-        return firestore
-            .collection(this.collection)
-            .orderBy("createdAt", "desc")
-            .get()        
     }
     set(videoId) {
         return firestore
@@ -25,12 +21,7 @@ class Like {
                 createdAt: new Date(),
             })
     }
-    delete(likeId) {
-        return firestore
-            .collection(this.collection)
-            .doc(likeId)
-            .delete();
-    }
+
 }
 
 export default new Like();
