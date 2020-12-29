@@ -22,7 +22,7 @@
 import CommentList from "@/components/CommentList.vue";
 import CommentForm from "@/components/CommentForm.vue";
 
-import firestore from '@/firebase/firestore';
+import commentModel from '@/model/comment';
 
 export default {
   name: "Comment",
@@ -46,11 +46,7 @@ export default {
   methods: {
     getComment: function() {
       this.comments = [];
-      firestore
-        .collection("comment")
-        .where("videoId", "==", this.videoId)
-        .orderBy("updatedAt", "desc")
-        .get()
+      commentModel.get(this.videoId)
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             let commentData = {
@@ -69,15 +65,7 @@ export default {
         alert("コメントを入力してください。");
         return false;
       }
-      firestore
-        .collection("comment")
-        .doc()
-        .set({
-          videoId: this.videoId,
-          comment: this.comment,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        })
+      commentModel.set(this.videoId, this.comment)
         .then(() => {
           this.comment = "";
           this.getComment();
@@ -87,10 +75,7 @@ export default {
         });
     },
     deleteComment: function(comment) {
-      firestore
-        .collection("comment")
-        .doc(comment.id)
-        .delete();
+      commentModel.delete(comment.id);
       for (let i = 0; i < this.comments.length; i++) {
         let commentId = this.comments[i].id;
         if (commentId == comment.id) {
