@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <HeadingA>YouTube Search list (Vue.js CLI)</HeadingA>
+      <HeadingA>VueTube Search</HeadingA>
     </div>
     <div class="searchForm_wrap u-mb20">
       <SearchForm
