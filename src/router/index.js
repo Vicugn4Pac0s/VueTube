@@ -34,20 +34,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-  const currentUser = firebaseAuth.currentUser;
-  console.log(currentUser);
   if (!requiresAuth) {
     next();
     return;
   }
-  if(!currentUser) {
-    next({
-      path: "/signin",
-      query: { redirect: to.fullPath },
-    });
-    return;
-  }
-  next();
+  // 認証状態を取得
+  firebaseAuth.onAuthStateChanged(function(user) {
+    if (user) {
+      next();
+      return;
+    }
+    next({ name: "Signin" });
+  });
 });
 
 export default router;
