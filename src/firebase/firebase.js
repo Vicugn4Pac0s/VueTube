@@ -1,4 +1,5 @@
 import Firebase from 'firebase';
+import "firebase/auth";
 import 'firebase/firestore';
 
 const config = {
@@ -13,6 +14,6 @@ const config = {
 }
 
 const firebaseApp = Firebase.initializeApp(config, 'exercise-vue');
-const firestore = firebaseApp.firestore();
 
-export default firestore;
+export const firebaseAuth = firebaseApp.auth();
+export const firestore = firebaseApp.firestore();

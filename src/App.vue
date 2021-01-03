@@ -2,11 +2,36 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/search">Search</router-link>
+      <router-link to="/search">Search</router-link> |
+      <router-link to="/signin">Signin</router-link> |
+      <router-link to="/signup">Signup</router-link> |
+      <a href="#" @click="signOut">SignOut</a>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+import { firebaseAuth } from "@/firebase/firebase";
+
+export default {
+  name: "App",
+  methods: {
+    signOut: function() {
+      firebaseAuth
+        .signOut()
+        .then(function() {
+          // Sign-out successful.
+          alert('サインアウトしました。');
+        })
+        .catch(function(error) {
+          // An error happened.
+          console.log(error);
+        });
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

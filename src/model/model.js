@@ -1,4 +1,4 @@
-import firestore from '@/firebase/firestore';
+import { firestore } from '@/firebase/firebase';
 
 export default class Model {
     constructor() {

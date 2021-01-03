@@ -1,4 +1,4 @@
-import firestore from '@/firebase/firestore';
+import { firestore } from '@/firebase/firebase';
 import Model from '@/model/model';
 
 class Comment extends Model {
