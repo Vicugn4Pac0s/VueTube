@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
     return;
   }
   // 認証状態を取得
-  firebaseAuth.onAuthStateChanged(function(user) {
+  firebaseAuth.onAuthStateChanged((user) => {
     if (user) {
       next();
       return;
