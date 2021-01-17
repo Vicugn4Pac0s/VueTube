@@ -39,13 +39,12 @@ router.beforeEach((to, from, next) => {
     return;
   }
   // 認証状態を取得
-  firebaseAuth.onAuthStateChanged((user) => {
-    if (user) {
-      next();
-      return;
-    }
-    next({ name: "Signin" });
-  });
+  let isLogin = firebaseAuth.getState();
+  if (isLogin) {
+    next();
+    return;
+  }
+  next({ name: "Signin" });
 });
 
 export default router;

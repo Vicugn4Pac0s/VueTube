@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     signUp: function () {
-      firebaseAuth.createUserWithEmailAndPassword(this.username, this.password)
+      firebaseAuth.signUp(this.username, this.password)
         .then(user => {
           alert('Create account: ', user.email)
           this.$router.push('/')

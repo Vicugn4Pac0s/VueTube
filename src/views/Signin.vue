@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     signIn: function () {
-      firebaseAuth.signInWithEmailAndPassword(this.username, this.password).then(
+      firebaseAuth.signIn(this.username, this.password).then(
         user => {
           alert('Success!')
           this.$router.push('/')
