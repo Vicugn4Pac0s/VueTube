@@ -1,6 +1,4 @@
 import Firebase from 'firebase';
-import "firebase/auth";
-import 'firebase/firestore';
 
 const config = {
   apiKey: "AIzaSyCI13WNp1VsiC5pGEekW6mVlOG0AhM6Pzk",
@@ -15,5 +13,4 @@ const config = {
 
 const firebaseApp = Firebase.initializeApp(config, 'exercise-vue');
 
-export const firebaseAuth = firebaseApp.auth();
-export const firestore = firebaseApp.firestore();
+export default firebaseApp;

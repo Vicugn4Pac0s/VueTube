@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { firebaseAuth } from "@/firebase/firebase";
+import firebaseAuth from "@/firebase/firebaseAuth";
 
 export default {
   name: "App",
