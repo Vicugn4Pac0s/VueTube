@@ -1,4 +1,3 @@
-import firestore from '@/firebase/firestore';
 import Model from '@/model/model';
 
 class Like extends Model {

@@ -1,5 +1,3 @@
-import firestore from '@/firebase/firestore';
-import firebaseAuth from "@/firebase/firebaseAuth";
 import Model from '@/model/model';
 
 class Comment extends Model {
