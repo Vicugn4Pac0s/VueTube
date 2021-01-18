@@ -1,13 +1,25 @@
 import firestore from '@/firebase/firestore';
+import firebaseAuth from "@/firebase/firebaseAuth";
 
 export default class Model {
     constructor() {
+        this.db = firestore;
+        this.auth = firebaseAuth;
         this.collection;
+
+        this.user = null;
+        this.uid = null;
+    }
+    updateUser() {
+        this.user = this.auth.getUser();
+        this.uid = this.user.uid;
     }
     get() {}
     getAll() {
-        return firestore
+        this.updateUser();
+        return this.db
             .collection(this.collection)
+            .where("userId", "==", this.uid)
             .orderBy("createdAt", "desc")
             .get()
             .catch((err) => {
@@ -16,7 +28,7 @@ export default class Model {
     }
     set() {}
     delete(id) {
-        return firestore
+        return this.db
             .collection(this.collection)
             .doc(id)
             .delete()

@@ -7,20 +7,24 @@ class Like extends Model {
         this.collection = "like";
     }
     get(videoId) {
-        return firestore
+        this.updateUser();
+        return this.db
             .collection(this.collection)
             .where("videoId", "==", videoId)
+            .where("userId", "==", this.uid)
             .get()
             .catch((err) => {
                 console.log("Error getting documents", err);
             });
     }
     set(videoId) {
-        return firestore
+        this.updateUser();
+        return this.db
             .collection(this.collection)
             .doc()
             .set({
                 videoId: videoId,
+                userId: this.uid,
                 createdAt: new Date(),
             })
             .catch((err) => {
