@@ -21,6 +21,12 @@ export default {
       password: ''
     }
   },
+  mounted: function() {
+    let self = this;
+    firebaseAuth.on('login', function(e) {
+      self.$router.push({ path: '/' });
+    });
+  },
   methods: {
     signIn: function () {
       firebaseAuth.signIn(this.username, this.password).then(
