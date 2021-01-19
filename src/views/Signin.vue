@@ -28,7 +28,7 @@ export default {
     if (firebaseAuth.getUser()) {
       self.$router.push({ path: "/" });
     }
-    firebaseAuth.on("login", function(e) {
+    firebaseAuth.on("login", function() {
       self.$router.push({ path: "/" });
     });
   },
