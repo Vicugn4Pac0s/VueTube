@@ -18,11 +18,13 @@ export default {
   name: "App",
   methods: {
     signOut: function() {
+      let self = this;
       firebaseAuth
         .signOut()
         .then(function() {
           // Sign-out successful.
           alert('サインアウトしました。');
+          self.$router.push({ path: "signin" });
         })
         .catch(function(error) {
           // An error happened.
