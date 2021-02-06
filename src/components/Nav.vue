@@ -1,8 +1,10 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/search">Search</router-link> |
-    <a href="#" @click="signOut">SignOut</a>
+    <div class="nav_inner">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/search">Search</router-link>
+    </div>
+    <a class="signOut" href="#" @click="signOut">SignOut</a>
   </div>
 </template>
 
@@ -11,6 +13,11 @@ import firebaseAuth from "@/firebase/firebaseAuth";
 
 export default {
   name: "Nav",
+  computed: {
+    'user': function() {
+      return firebaseAuth.getUser();
+    }
+  },
   methods: {
     signOut: function() {
       let self = this;
@@ -34,6 +41,7 @@ export default {
 <style scoped lang="scss">
 #nav {
   padding: 30px;
+  position: relative;
 
   a {
     font-weight: bold;
@@ -42,6 +50,16 @@ export default {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+  .signOut {
+    border: 2px solid #999;
+    color: #999;
+    font-size: 14px;
+    padding: 2.5px 20px;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translate(0, -50%);
   }
 }
 </style>
