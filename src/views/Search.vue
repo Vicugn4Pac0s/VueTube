@@ -1,4 +1,5 @@
 <template>
+  <Nav />
   <div>
     <div>
       <HeadingA>VueTube Search</HeadingA>
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav.vue";
 import HeadingA from "@/components/HeadingA.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import YtList from "@/components/YtList.vue";
@@ -26,6 +28,7 @@ import Youtube from "@/utilities/youtube";
 export default {
   name: "Search",
   components: {
+    Nav,
     HeadingA,
     SearchForm,
     YtList,
