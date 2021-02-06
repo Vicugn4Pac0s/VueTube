@@ -5,6 +5,7 @@
       <router-link to="/search">Search</router-link>
     </div>
     <a class="signOut" href="#" @click="signOut">SignOut</a>
+    <p class="userEmail"><span>{{ user.email }}</span><br>としてログイン中</p>
   </div>
 </template>
 
@@ -60,6 +61,19 @@ export default {
     top: 50%;
     right: 30px;
     transform: translate(0, -50%);
+  }
+  .userEmail {
+    color: #999;
+    font-size: 14px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    text-align: right;
+    span {
+      color: #42b983;
+      text-decoration: underline;
+    }
   }
 }
 </style>
