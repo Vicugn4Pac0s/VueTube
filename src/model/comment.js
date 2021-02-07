@@ -1,4 +1,3 @@
-import firestore from '@/firebase/firestore';
 import Model from '@/model/model';
 
 class Comment extends Model {
@@ -7,9 +6,11 @@ class Comment extends Model {
         this.collection = "comment";
     }
     get(videoId) {
-        return firestore
+        this.updateUser();
+        return this.db
             .collection(this.collection)
             .where("videoId", "==", videoId)
+            .where("userId", "==", this.uid)
             .orderBy("updatedAt", "desc")
             .get()
             .catch((err) => {
@@ -17,12 +18,14 @@ class Comment extends Model {
             });
     }
     set(videoId, comment) {
-        return firestore
+        this.updateUser();
+        return this.db
             .collection(this.collection)
             .doc()
             .set({
                 videoId: videoId,
                 comment: comment,
+                userId: this.uid,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             })

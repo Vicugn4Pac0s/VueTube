@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <ytListHome :likeIds="likeIds" :commentIds="commentIds" :loadLikeIds="loadLikeIds" :loadCommentIds="loadCommentIds" />
+    <Nav />
+    <YtListHome :likeIds="likeIds" :commentIds="commentIds" :loadLikeIds="loadLikeIds" :loadCommentIds="loadCommentIds" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Nav from "@/components/Nav.vue";
 import YtListHome from "@/components/YtListHome.vue";
 
 import commentModel from '@/model/comment';
@@ -14,6 +16,7 @@ import likeModel from '@/model/like';
 export default {
   name: "Home",
   components: {
+    Nav,
     YtListHome,
   },
   data: function() {
