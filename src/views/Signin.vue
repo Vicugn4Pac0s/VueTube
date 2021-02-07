@@ -2,25 +2,31 @@
   <div class="signin">
     <h2>Sign in</h2>
     <input type="text" placeholder="Username" v-model="username" />
-    <input type="password" placeholder="Password" v-model="password" @keydown.enter="signIn" />
+    <input
+      type="password"
+      placeholder="Password"
+      v-model="password"
+      @keydown.enter="signIn"
+    />
     <button @click="signIn">Signin</button>
     <p>
       You don't have an account?
       <router-link to="/signup">create account now!!</router-link>
     </p>
   </div>
-  <div class="waitLayer"  :class="{ active: isWait }">
-    <div class="waitLayer_loader">
-      <img src="../assets/images/loader.gif" alt="" />
-    </div>
-  </div>
+  <WaitLayer :isWait="isWait" />
 </template>
 
 <script>
 import firebaseAuth from "@/firebase/firebaseAuth";
 
+import WaitLayer from "@/components/WaitLayer.vue";
+
 export default {
   name: "Signin",
+  components: {
+    WaitLayer,
+  },
   data: function() {
     return {
       username: "",
@@ -86,29 +92,5 @@ input {
   margin: 10px 0;
   padding: 10px;
   width: 280px;
-}
-
-.waitLayer {
-  background: rgba(255, 255, 255, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 999;
-  transition: .35s;
-
-  opacity: 0;
-  pointer-events: none;
-  &.active {
-    opacity: 1;
-    pointer-events: default;
-  }
-  .waitLayer_loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 </style>
