@@ -38,6 +38,7 @@ export default {
         .signUp(this.username, this.password)
         .then((user) => {
           alert("Create account: ", user.email);
+          firebaseAuth.sendEmailVerified();
           this.$router.push("/");
         })
         .catch((error) => {

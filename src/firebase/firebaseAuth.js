@@ -38,6 +38,12 @@ class firebaseAuth {
   getUser() {
     return this.user;
   }
+  getEmailVerified() {
+    return this.user.emailVerified;
+  }
+  sendEmailVerified() {
+    this.auth.currentUser.sendEmailVerification();
+  }
   signIn(username, password) {
     return this.auth.signInWithEmailAndPassword(username, password);
   }
