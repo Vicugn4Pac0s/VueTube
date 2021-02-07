@@ -17,9 +17,10 @@
           >宛に認証メールを送信しています。<br />
           メール認証を済ませてください。
         </p>
-        <p class="emailVerified_sendMail" @click="sendEmailVerified">
+        <p class="emailVerified_sendMail" @click="sendEmailVerified" v-if="!isSendMail">
           認証メールを再送信
         </p>
+        <p class="emailVerified_endSendMail" v-if="isSendMail">認証メールを再送信しました。</p>
       </div>
     </div>
   </div>
@@ -33,6 +34,7 @@ export default {
   data: function() {
     return {
       isActive: false,
+      isSendMail: false,
     };
   },
   computed: {
@@ -62,6 +64,7 @@ export default {
     },
     sendEmailVerified() {
       firebaseAuth.sendEmailVerified();
+      this.isSendMail = true;
     },
   },
 };
