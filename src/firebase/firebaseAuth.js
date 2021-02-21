@@ -20,14 +20,6 @@ class firebaseAuth {
         console.log("Error");
     }
   }
-  initRedirect() {
-    if (this.getUser()) {
-      router.push({ path: "/" });
-    }
-    this.on("login", function() {
-      router.push({ path: "/" });
-    });
-  }
   events() {
     let self = this;
     self.auth.onAuthStateChanged((user) => {
@@ -39,6 +31,14 @@ class firebaseAuth {
       }
       self.user = null;
       self.state = 0;
+    });
+  }
+  initRedirect() {
+    if (this.getUser()) {
+      router.push({ path: "/" });
+    }
+    this.on("login", function() {
+      router.push({ path: "/" });
     });
   }
   getState() {
