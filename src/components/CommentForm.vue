@@ -4,6 +4,7 @@
       :value="comment"
       name="comment"
       @keyup="$emit('inputted', $event)"
+      @blur="$emit('inputted', $event)"
       @keydown.enter.alt.exact="$emit('enter', $event)"
     ></textarea>
     <button @click="$emit('send', $event)">

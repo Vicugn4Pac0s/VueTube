@@ -5,6 +5,7 @@
       class="searchForm_input"
       :value="keyword"
       @keyup="$emit('inputted', $event)"
+      @blur="$emit('inputted', $event)"
       @keydown.enter="$emit('enter', $event)"
       placeholder="検索キーワードを入力"
     />

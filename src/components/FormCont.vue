@@ -9,12 +9,14 @@
         placeholder="Username"
         :value="username"
         @keyup="$emit('inputtedUsername', $event)"
+        @blur="$emit('inputtedUsername', $event)"
       />
       <input
         type="password"
         placeholder="Password"
         :value="password"
         @keyup="$emit('inputtedPassword', $event)"
+        @blur="$emit('inputtedPassword', $event)"
         @keydown.enter="$emit('submit', $event)"
       />
       <button @click="$emit('submit', $event)" class="formCont_submit">
