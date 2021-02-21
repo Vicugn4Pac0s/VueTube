@@ -1,5 +1,6 @@
 import firebase from "@/firebase/firebase";
 import observer from "@/utilities/observer";
+import router from "@/router"
 
 class firebaseAuth {
   constructor() {
@@ -18,6 +19,14 @@ class firebaseAuth {
       default:
         console.log("Error");
     }
+  }
+  initRedirect() {
+    if (this.getUser()) {
+      router.push({ path: "/" });
+    }
+    this.on("login", function() {
+      router.push({ path: "/" });
+    });
   }
   events() {
     let self = this;

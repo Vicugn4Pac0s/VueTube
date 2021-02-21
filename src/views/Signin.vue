@@ -35,14 +35,8 @@ export default {
     };
   },
   mounted: function() {
-    let self = this;
     //ログイン済みの場合 リダイレクト
-    if (firebaseAuth.getUser()) {
-      self.$router.push({ path: "/" });
-    }
-    firebaseAuth.on("login", function() {
-      self.$router.push({ path: "/" });
-    });
+    firebaseAuth.initRedirect();
   },
   methods: {
     signIn: function() {
