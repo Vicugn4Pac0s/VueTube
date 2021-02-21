@@ -93,7 +93,7 @@ export default {
     top: 50%;
     right: 30px;
     transform: translate(0, -50%);
-    z-index: 999;
+    z-index: 0;
   }
   .userEmail {
     color: #999;
