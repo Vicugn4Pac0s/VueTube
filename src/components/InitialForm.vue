@@ -1,7 +1,7 @@
 <template>
-  <div class="formCont">
-    <div class="formCont_inner">
-      <h2 class="formCont_ttl">
+  <div class="initialForm">
+    <div class="initialForm_inner">
+      <h2 class="initialForm_ttl">
         <slot name="title"></slot>
       </h2>
       <input
@@ -19,7 +19,7 @@
         @blur="$emit('inputtedPassword', $event)"
         @keydown.enter="$emit('submit', $event)"
       />
-      <button @click="$emit('submit', $event)" class="formCont_submit">
+      <button @click="$emit('submit', $event)" class="initialForm_submit">
         <slot name="btnTxt"></slot>
       </button>
       <p>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "FormCont",
+  name: "InitialForm",
   components: {},
   data: function() {
     return {};
@@ -45,7 +45,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.formCont {
+.initialForm {
   background: #f9f9f9;
   box-sizing: border-box;
   padding: 40px;
@@ -58,13 +58,13 @@ export default {
     margin-bottom: 20px;
     width: 100%;
   }
-  .formCont_ttl {
+  .initialForm_ttl {
     color: #42b983;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
   }
-  .formCont_submit {
+  .initialForm_submit {
     background: #42b983;
     border: none;
     color: #fff;

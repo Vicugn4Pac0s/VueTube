@@ -1,6 +1,6 @@
 <template>
   <div class="signin">
-    <FormCont
+    <InitialForm
       :username="username"
       :password="password"
       @inputtedUsername="inputtedUsername"
@@ -13,7 +13,7 @@
         You don't have an account?
         <router-link to="/signup">create account now!!</router-link>
       </template>
-    </FormCont>
+    </InitialForm>
   </div>
   <WaitLayer :isWait="isWait" />
 </template>
@@ -21,13 +21,13 @@
 <script>
 import firebaseAuth from "@/firebase/firebaseAuth";
 
-import FormCont from "@/components/FormCont.vue";
+import InitialForm from "@/components/InitialForm.vue";
 import WaitLayer from "@/components/WaitLayer.vue";
 
 export default {
   name: "Signin",
   components: {
-    FormCont,
+    InitialForm,
     WaitLayer,
   },
   data: function() {
